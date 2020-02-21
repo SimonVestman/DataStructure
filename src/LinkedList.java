@@ -5,6 +5,9 @@
 
 public class LinkedList {
     Node first;
+    Node last;
+    Node temp;
+    int size;
 
 
     /**
@@ -19,18 +22,36 @@ public class LinkedList {
      * (first=null). Make sure to solve that properly...
      * @param newNode
      */
+/*
+    int i = 0;
+    Node currentNode = newNode;
+        while (currentNode != null){
+        currentNode = currentNode.next;
+        i++;
+        */
     public void addLast(Node newNode) {
-        first = newNode;
-        
+        if (first == null ) {
+            first = newNode;
+            last = newNode;
+        } else {
+            last.next = newNode;
+            last = newNode;
+            last.next = null;
+        }
     }
-
     /**
      * Removes and returns the first element of the list. Check if the list is empty and return null in that case
      * (bad practice, should throw an Exception)
      * @return
      */
     public Node removeFirst() {
-        return null;
+        if (first == null){
+            return null;
+        }else{
+            temp = new Node(first.data,first.next);
+            first = first.next;
+            return temp;
+        }
     }
 
     /**
